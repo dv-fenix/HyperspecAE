@@ -24,7 +24,7 @@ def train(opt):
     # Define Model
     model = HyperspecAE(opt.num_bands, opt.end_members, opt.gaussian_dropout, opt.activation,
                 opt.threshold, opt.encoder_type)
-    optimizer = optim.Adam(model.parameters(), LR)
+    optimizer = optim.Adam(model.parameters(), opt.learning_rate)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
@@ -55,7 +55,7 @@ def train(opt):
             loss.backward()
             optimizer.step()
         if (epoch+1)%50==0:
-            print(f'Epoch {epoch + 1:04d} / {EPOCHS:04d}', end='\n=================\n')
+            print(f'Epoch {epoch + 1:04d} / {opt.epochs:04d}', end='\n=================\n')
             print("Loss: %.4f" %(loss.item()))   
       
     print('Training Finished!')

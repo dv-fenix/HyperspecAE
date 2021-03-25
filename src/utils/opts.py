@@ -34,6 +34,16 @@ def train_opts(parser):
     group.add('--src_dir', '-src_dir', type=str, required=True,
     help="System path to the Samson directory.")
     
+    group.add('--save_checkpt', '-save_checkpt', type=int, default=0,
+    help="Number of epochs after which a check point of"
+          "model parameters should be saved.")
+          
+    group.add('--save_dir', '-save_dir', type=str, default="../logs/",
+    help="System path to save model weights.")
+    
+    group.add('--train_from', '-train_from', type=str, default=None,
+    help="Path to checkpoint file to continue training from.")
+    
     group.add('--num_bands', '-num_bands', type=int, default=156,
     help="Number of spectral bands present in input image.")
     

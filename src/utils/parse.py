@@ -74,7 +74,12 @@ class ArgumentParser(cfargparse.ArgumentParser):
             
         if train_opt.end_members >= train_opt.num_bands:
             raise AssertionError(
-            "Number of end members to be extracted can't be more than the number of existing spectral signatures.")
+            "Number of end members to be extracted can't be more \
+            than the number of existing spectral signatures.")
+        
+        if train_opt.save_checkpt > train_opt.epochs:
+            raise AssertionError(
+            "Checkpoint should lie within the number of training iterations.")
             
             
         

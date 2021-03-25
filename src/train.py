@@ -28,6 +28,12 @@ def train(opt):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
+    
+    
+    if opt.train_from:
+        checkpoint = torch.load(opt.train_from)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
     for epoch in range(opt.epochs):
     
@@ -44,7 +50,7 @@ def train(opt):
             if opt.objective=="SAD":
                 reconstr_loss = SAD()
             elif opt.objective=='MSE':
-                reconstr_loss = Snn.MSELoss()
+                reconstr_loss = nn.MSELoss()
             else:
                 reconstr_loss = SID()
             loss = reconstr_loss(dec_out, X.float())
@@ -54,10 +60,22 @@ def train(opt):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            
         if (epoch+1)%50==0:
             print(f'Epoch {epoch + 1:04d} / {opt.epochs:04d}', end='\n=================\n')
-            print("Loss: %.4f" %(loss.item()))   
-      
+            print("Loss: %.4f" %(loss.item()))
+
+        if (opt.save_checkpt!=0 and (epoch+1)%opt.save_checkpt==0):
+            torch.save({
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict()
+            }, f"{opt.save_dir}/hyperspecae_{epoch+1}.pt")
+    
+    torch.save({
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict()
+            }, f"{opt.save_dir}/hyperspecae_final.pt")
+            
     print('Training Finished!')
     
 def _get_parser():

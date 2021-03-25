@@ -1,0 +1,13 @@
+python -u train.py\
+	-src_dir ../data/Samson/\
+	-num_bands 156\
+	-end_members 3\
+	-encoder_type deep\
+	-soft_threshold SReLU\
+	-activation Leaky-ReLU\
+	-batch_size 20\
+	-learning_rate 1e-3\
+	-epochs 150\
+	-gaussian_dropout 0.5\
+	-threshold 1.0\
+	-objective SAD >> /../logs/training_out.txt

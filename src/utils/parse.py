@@ -80,6 +80,34 @@ class ArgumentParser(cfargparse.ArgumentParser):
         if train_opt.save_checkpt > train_opt.epochs:
             raise AssertionError(
             "Checkpoint should lie within the number of training iterations.")
+        
+    @classmethod
+    def validate_extract_opts(cls, extract_opt):
+        assert extract_opt.num_bands > 1, \
+            "HSI has to have a minimum of two spectral bands."
+            
+        assert extract_opt.end_members > 0, \
+            "Number of end-members must be positive."
+            
+        assert extract_opt.batch_size > 0, \
+            "Batch size must be positive."
+            
+        assert extract_opt.learning_rate > 0, \
+            "Learning rate must be positive."
+            
+        assert extract_opt.epochs > 0, \
+            "Number of epochs must be positive."
+            
+        assert extract_opt.gaussian_dropout > 0, \
+            "Mean of applied noise must be positive."
+            
+        assert extract_opt.threshold > 0, \
+            "Threshold must be positive."
+            
+        if extract_opt.end_members >= extract_opt.num_bands:
+            raise AssertionError(
+            "Number of end members to be extracted can't be more \
+            than the number of existing spectral signatures.")
             
             
         

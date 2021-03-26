@@ -7,7 +7,7 @@ python -u train.py\
 	-activation Leaky-ReLU\
 	-batch_size 20\
 	-learning_rate 1e-3\
-	-epochs 150\
-	-gaussian_dropout 0.5\
+	-epochs 250\
+	-gaussian_dropout 0.2\
 	-threshold 1.0\
 	-objective SAD >> /../logs/training_out.txt

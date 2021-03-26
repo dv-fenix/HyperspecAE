@@ -26,7 +26,7 @@ class Samson(data.Dataset):
         self.target_transform = target_transform
 
         if not self._check_exists():
-            raise RuntimeError("Dataset not found." + " You can use download=True to download it")
+            raise RuntimeError("Dataset not found." + " You can use 'https://rslab.ut.ac.ir/data' to download it")
 
         PATH = os.path.join(self.root, self.img_folder, self.training_file)
         PATH_L = os.path.join(self.root, self.gt_folder, self.labels_file)

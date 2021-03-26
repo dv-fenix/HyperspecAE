@@ -38,7 +38,7 @@ def train_opts(parser):
     help="Number of epochs after which a check point of"
           "model parameters should be saved.")
           
-    group.add('--save_dir', '-save_dir', type=str, default="../logs/",
+    group.add('--save_dir', '-save_dir', type=str, default="../logs",
     help="System path to save model weights.")
     
     group.add('--train_from', '-train_from', type=str, default=None,

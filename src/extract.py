@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import torch
 import torch.nn
+import torch.optim as optim
 from utils.parse import ArgumentParser
 import utils.extract_opts as opts
 import matplotlib.pyplot as plt
@@ -17,7 +18,7 @@ def extract_abundances(opt):
     optimizer = optim.Adam(model.parameters(), opt.learning_rate)
     
     
-    checkpoint = torch.load('opt.ckpt')
+    checkpoint = torch.load(opt.ckpt)
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 

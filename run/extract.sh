@@ -1,4 +1,4 @@
-python -u extract.py\
+python -u ../src/extract.py\
 	-src_dir ../data/Samson/\
 	-ckpt ../logs/hyperspecae_final.pt\
 	-save_dir ../imgs/\

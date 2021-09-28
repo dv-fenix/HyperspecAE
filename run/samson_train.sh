@@ -1,4 +1,4 @@
-python -u train.py\
+python -u ../src/train.py\
 	-src_dir ../data/Samson/\
 	-num_bands 156\
 	-end_members 3\
@@ -10,4 +10,4 @@ python -u train.py\
 	-epochs 250\
 	-gaussian_dropout 0.2\
 	-threshold 1.0\
-	-objective SAD >> /../logs/training_out.txt
+	-objective SAD >> ../logs/training_out.txt

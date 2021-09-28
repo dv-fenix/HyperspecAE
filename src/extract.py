@@ -38,7 +38,7 @@ def extract_abundances(opt):
             img = torch.tensor(img)
             e, y = model(img.float())
             plt.imshow(e.detach().squeeze().numpy().T[i].reshape(95, 95))
-            plt.gray()
+            #plt.gray()
             ax.get_xaxis().set_visible(False)
             ax.get_yaxis().set_visible(False)
     plt.savefig(f'{opt.save_dir}/abundances.png')
